@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<meta charset="utf-8">
+		<title>Buzz Word</title>
+		<meta name="description" content="Cloud Computing Assignment #3">
+		<meta name="author" content="Jinglun Dong">
+        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <style type="text/css">
+          body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+          }
+        </style>
+	</head>
+
+	<body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+            <div class="container">
+              <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </a>
+              <a class="brand" href="#">Buzz Word</a>
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <li><a href="/">Home</a></li>
+                  <li class="active"><a href="#analysis">Analysis</a></li>
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div>
+          </div>
+        </div>
+    
+        <div class="container">
+            <div class="hero-unit">
+                <h1>What is the Buzz?</h1>
+                Dependency: 
+                <ul>
+                    <li>Twitter Search API</li>
+                    <li>Google App Engine Python SDK</li>
+                    <li>Bootstrap Framework</li>
+                    <li>Django Framework</li>
+                </ul>
+                Author:
+                <ul>
+                    <li>Jinglun Dong</li>
+                </ul>
+            </div>
+          
+            <hr>
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span6">
+                  <!--Body content-->
+                  <strong>
+                  <h3>Last Ten Searched Words</h3>
+                      <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Key Word be Searched</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for last_word in last %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td><a href="/analysis?key_word={{last_word.key_word}}">{{last_word.key_word}}</a></td>
+                            </tr>
+                        {% endfor %}
+                        <tbody>
+                      </table>
+                  </strong>
+                </div>
+                
+                <div class="span6">
+                  <!--Body content-->
+                  <strong>
+                  <h3>Most Frequent Words For {{key_word}}</h3>
+                      <table class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Word in Tweets</th>
+                                <th>Times</th>
+                            </tr>
+                        </thead>                      
+                        {% for frequent in count %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{frequent.content}}</td>
+                                <td>{{frequent.count}}</td>
+                            </tr>
+                        {% endfor %}
+                      </table>
+                  </strong>
+                </div>
+              </div>
+            </div>
+        </div>
+        
+        
+        
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
